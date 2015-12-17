@@ -1,0 +1,9 @@
+{
+  "name": "StringCalculatorKata",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}
