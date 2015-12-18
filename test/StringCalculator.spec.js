@@ -46,11 +46,15 @@ describe("String Calculator", function() {
 
     it("should throw error if contains any negative number", function() {
         var data = "-2,4,-5";
-        expect((function() { stringCalculator.Add(data) })).to.throw(Error, /-2,-5/);
+        expect((function() {
+            stringCalculator.Add(data)
+        })).to.throw(Error, /-2,-5/);
     });
 
     it("should throw error if contains any negative number with delimiter", function() {
         var data = "//;\n1;-2;3";
-        expect((function() { stringCalculator.Add(data) })).to.throw(Error, /-2/);
+        expect((function() {
+            stringCalculator.Add(data)
+        })).to.throw(Error, /-2/);
     });
 });
