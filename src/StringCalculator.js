@@ -10,13 +10,24 @@ StringCalculator = function() {
         var numbers = (match) ? match[2] : string;
 
         var re = new RegExp(delimiter, 'g');
-        numbers = numbers.replace(re, ',');
 
-        return numbers
+        numbers = numbers
+            .replace(re, ',')
             .split(",")
-            .reduce(function(x, y) {
-                return parseInt(x, 10) + parseInt(y, 10);
+            .map(function(x) {
+                return parseInt(x, 10);
             });
+
+        var negative = [];
+        numbers.forEach(function(number) {
+            if (number < 0) negative.push(number);
+        });
+
+        if (negative.length > 0) throw new Error(JSON.stringify(negative));
+
+        return numbers.reduce(function(x, y) {
+            return x + y;
+        });
     }
 
     return {
