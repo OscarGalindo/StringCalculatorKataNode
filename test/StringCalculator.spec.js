@@ -57,4 +57,22 @@ describe("String Calculator", function() {
             stringCalculator.Add(data)
         })).to.throw(Error, /-2/);
     });
+
+    it("should ignore numbers bigger than 1000", function() {
+        var data = "1,2,1000,5,1030";
+        var expectedResult = stringCalculator.Add(data);
+        expect(expectedResult).to.be.equal(8);
+    });
+
+    it("should return split with custom delimiter", function() {
+        var data = "//[***]\n1***2***3";
+        var expectedResult = stringCalculator.Add(data);
+        expect(expectedResult).to.be.equal(6);
+    });
+
+    //it("should return split with custom delimiters", function() {
+    //    var data = "//[*][%]\n1*2%3";
+    //    var expectedResult = stringCalculator.Add(data);
+    //    expect(expectedResult).to.be.equal(6);
+    //});
 });

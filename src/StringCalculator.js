@@ -10,24 +10,27 @@ StringCalculator = function() {
         var numbers = (match) ? match[2] : string;
 
         var re = new RegExp(delimiter, 'g');
+        var negative = [];
 
         numbers = numbers
             .replace(re, ',')
             .split(",")
             .map(function(x) {
-                return parseInt(x, 10);
+                x = parseInt(x, 10);
+                if (x < 0) negative.push(x);
+                return x;
+            })
+            .filter(function(number) {
+                return (number < 1000);
+            })
+            .reduce(function(x, y) {
+                return x + y;
             });
 
-        var negative = [];
-        numbers.forEach(function(number) {
-            if (number < 0) negative.push(number);
-        });
 
         if (negative.length > 0) throw new Error(JSON.stringify(negative));
 
-        return numbers.reduce(function(x, y) {
-            return x + y;
-        });
+        return numbers;
     }
 
     return {
